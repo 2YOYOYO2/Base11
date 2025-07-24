@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SwipeClips</title>
+  <link rel="icon" type="image/png" href="favicon.png">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Poppins', sans-serif;
+      background-color: #000;
+      color: gold;
+      text-align: center;
+    }
+
+    nav {
+      position: fixed;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 2rem;
+      z-index: 1000;
+      background: rgba(0, 0, 0, 0.8);
+      padding: 10px 20px;
+      border-radius: 30px;
+    }
+
+    nav a {
+      color: gold;
+      text-decoration: none;
+      font-weight: 600;
+      transition: color 0.3s ease;
+    }
+
+    nav a:hover {
+      color: #f2c94c;
+    }
+
+    .hero {
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background-image: url('https://images.unsplash.com/photo-1614624532983-7c0c95b9d1f2?fit=crop&w=1920&q=80');
+      background-size: cover;
+      background-position: center;
+      color: gold;
+      text-shadow: 1px 1px 3px #000;
+      padding: 0 20px;
+    }
+
+    .logo {
+      max-width: 200px;
+      margin-bottom: 20px;
+      animation: fadeIn 1.5s ease-in-out;
+    }
+
+    h1 {
+      font-size: 3.5rem;
+      font-weight: 800;
+      margin-bottom: 0.5rem;
+      animation: fadeIn 2s ease-in-out;
+    }
+
+    p {
+      font-size: 1.2rem;
+      font-weight: 400;
+      margin-bottom: 2rem;
+      color: #f2c94c;
+      animation: fadeIn 3s ease-in-out;
+    }
+
+    .btn {
+      background-color: #00FFFF; /* Sharp Electric Blue */
+      color: black;
+      padding: 0.75rem 1.5rem;
+      border: none;
+      border-radius: 30px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      animation: fadeIn 4s ease-in-out;
+    }
+
+    .btn:hover {
+      background-color: #00CCCC; /* Slightly darker shade for hover */
+    }
+
+    section {
+      padding: 120px 20px 80px;
+      max-width: 1000px;
+      margin: 0 auto;
+      background-color: #111;
+      border-top: 1px solid gold;
+      scroll-margin-top: 120px;
+    }
+
+    section h2 {
+      font-size: 3.2rem;
+      font-weight: 800;
+      margin-top: 0;
+      margin-bottom: 1.5rem;
+    }
+
+    section p {
+      font-size: 1rem;
+      line-height: 1.6;
+      color: #ddd;
+    }
+
+    .section-image {
+      max-width: 100%;
+      height: auto;
+      margin: 30px 0;
+      border-radius: 12px;
+      box-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .toggle-switch {
+      position: relative;
+      display: inline-block;
+      width: 60px;
+      height: 34px;
+      vertical-align: middle;
+      margin-right: 12px;
+    }
+
+    .toggle-switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    .slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0; left: 0;
+      right: 0; bottom: 0;
+      background-color: #DC143C; /* Crimson Red */
+      transition: 0.4s;
+      border-radius: 34px;
+      border: 2px solid #DC143C; /* Crimson Red border */
+    }
+
+    .slider:before {
+      position: absolute;
+      content: "";
+      height: 24px; width: 24px;
+      left: 4px;
+      bottom: 4px;
+      background-color: gold;
+      transition: 0.4s;
+      border-radius: 50%;
+    }
+
+    .toggle-switch input:checked + .slider {
+      background-color: #A52A2A; /* Darker Crimson Red when checked */
+      border: 2px solid #A52A2A; /* Darker Crimson Red border when checked */
+    }
+
+    .toggle-switch input:checked + .slider:before {
+      transform: translateX(26px);
+    }
+
+    .plan-card {
+  background-color: #222;
+  padding: 30px;
+  border-radius: 20px;
+  width: 280px;
+  transition: 0.3s ease;
+}
+
+/* Starter Glow - Green */
+.plan-starter {
+  border: 2px solid #32CD32;
+  box-shadow: 0 0 15px #32CD32;
+}
+
+/* Pro Glow - Gold */
+.plan-pro {
+  border: 2px solid gold;
+  box-shadow: 0 0 15px gold;
+}
+
+/* Elite Glow - Purple */
+.plan-elite {
+  border: 2px solid purple;
+  box-shadow: 0 0 15px purple;
+}  
+  </style>
+</head>
+<body>
+  <nav>
+    <a href="#home">Home</a>
+    <a href="#future">Future</a>
+    <a href="#about">About</a>
+    <a href="#services">Services</a>
+    <a href="#pricing">Pricing</a>
+    <a href="#contact">Contact</a>
+  </nav>
+
+  <div class="hero" id="home">
+    <img src="https://i.imgur.com/hgi6dVr.png" alt="king" width="280">
+    <h1>Welcome to SwipeClips</h1>
+    <p>The creation of <strong>SUCCESS</strong> starts here</p>
+    <button class="btn">Get Started</button>
+  </div>
+
+ <section id="future">
+  <h2>The Future of Wealth is Social</h2>
+  <img src="https://images.unsplash.com/flagged/photo-1559717865-a99cac1c95d8?q=80&w=871&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Burj Al Arab" class="section-image">
+  <p>
+    The digital age has rewritten the rules of success. Social media platforms like TikTok, Instagram, and YouTube aren’t just apps—they’re gateways to wealth, influence, and freedom.
+    <br><br>
+    Today, anyone with a smartphone can build a brand, grow an audience, and turn their voice into a business. Influencers are replacing traditional celebrities. Viral content is replacing ad agencies. And content creators are becoming the new millionaires.
+    <br><br>
+    The next generation of leaders won’t wear suits—they’ll wear hoodies and speak directly to millions through a screen. Social media is no longer optional. It’s the launchpad for your future. SwipeClips is here to make sure you don’t miss that rocket.
+  </p>
+</section>
+
+  <section id="about">
+    <h2>About SwipeClips</h2>
+    <img src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?fit=crop&w=1000&q=80" alt="About SwipeClips" class="section-image">
+    <p>
+      SwipeClips is your partner in building a powerful online presence. We specialize in crafting high-impact short-form content that drives visibility and growth. Whether you're a brand, influencer, or business owner, our mission is to make success simple, fast, and achievable.
+    </p>
+  </section>
+
+  <section id="services">
+    <h2>Our Services</h2>
+    <img src="https://images.pexels.com/photos/8370432/pexels-photo-8370432.jpeg" alt="Content Creation" class="section-image">
+    <p>
+      At SwipeClips, we offer:<br><br>
+      ✅ Short-form content for TikTok, Reels & Shorts<br>
+      ✅ Branding & audience strategy<br>
+      ✅ Weekly content calendars<br>
+      ✅ Engagement & growth optimization<br><br>
+      We bring your ideas to life with content that converts.
+    </p>
+  </section>
+
+<section id="pricing">
+  <h2>Pricing Plans</h2>
+  <div style="margin: 20px 0 30px; display: flex; justify-content: center; align-items: center; gap: 10px;">
+    <label class="toggle-switch">
+      <input type="checkbox" id="priceToggle">
+      <span class="slider"></span>
+    </label>
+    <span style="font-weight: 600; color: #f2c94c;">Show Weekly Pricing</span>
+  </div>
+
+  <p>Choose the content package that fits your goals:</p>
+  <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; margin-top: 40px;">
+    
+<!-- Starter Plan -->
+<div class="plan-card plan-starter">
+  <h3 style="color: #32CD32; font-size: 1.5rem;">Starter</h3>
+  <p id="starter-price" style="color: #f2c94c;">$35 / month</p>
+  <ul style="list-style: none; padding: 0; color: #ddd;">
+    <li>✅ 40 Videos / Week</li>
+    <li>✅ Good Quality Vids.</li>
+    <li>✅ Content Advice</li>
+  </ul>
+</div>
+
+<!-- Pro Plan -->
+<div class="plan-card plan-pro">
+  <h3 style="color: gold; font-size: 1.5rem;">Pro</h3>
+  <p id="pro-price" style="color: #f2c94c;">
+    <span style="font-size: 1.2rem;">$45 / month</span><br>
+    <span style="text-decoration: line-through; color: red;">$60</span> – 
+    <span style="color: #00ffcc;">25% OFF</span>
+  </p>
+  <ul style="list-style: none; padding: 0; color: #ddd;">
+    <li>✅ 35 High-Quality Videos / Month</li>
+    <li>✅ 25 Mid-Quality Videos / Month</li>
+    <li>✅ Daily delivery with hashtags</li>
+  </ul>
+</div>
+
+<!-- Elite Plan -->
+<div class="plan-card plan-elite">
+  <h3 style="color: purple; font-size: 1.5rem;">Elite</h3>
+  <p id="elite-price" style="color: #f2c94c;">$85 / month</p>
+  <ul style="list-style: none; padding: 0; color: #ddd;">
+    <li>✅ 80 High-Quality Videos / Month</li>
+    <li>✅ Videos delivered daily with hashtags + titles</li>
+    <li>✅ Highest Chance to go Viral</li>
+    <li>✅ Very Entertaining</li>
+  </ul>
+</div>
+  <br>
+  <br>
+  <p style="font-size: 12px; color: gray;">Results vary per person</p>
+</section>
+
+
+  <section id="contest">
+    <h2>🎉 SwipeClips Creator Contest</h2>
+    <img src="https://www.hdwallpapers.in/download/lamborghini_huracan_sto_2021_41_4k_5k_hd_cars-HD.jpg" alt="Lamborghini Contest Image" class="section-image">
+    <p>
+      Think you’ve got what it takes to go viral? Join the SwipeClips Creator Contest and put your content skills to the test. 
+      We’re looking for bold creators ready to rise. Winners get free content packages, exclusive features, and cash prizes!
+    </p>
+    <div style="background-color: #222; padding: 30px; border-radius: 20px; border: 1px solid gold; max-width: 700px; margin: 40px auto;">
+      <h3 style="color: gold;">How to Enter:</h3>
+      <ul style="list-style: none; padding: 0; color: #ddd; text-align: left;">
+        <li>✅ Follow <a href="https://instagram.com/SwipeClipsmedia" target="_blank" style="color: gold;">@SwipeClipsmedia</a> on Instagram</li>
+        <li>✅ Post a 30-sec reel using the hashtag <strong>#SwipeClipsContest</strong></li>
+        <li>✅ Tag @SwipeClipsmedia in the caption</li>
+      </ul>
+      <p style="margin-top: 20px; color: #f2c94c;">
+        Deadline: <strong>COMING SOON!!!</strong> <br>
+        Winners announced on our IG page. Don’t miss out!
+      </p>
+      <button class="btn" style="margin-top: 20px;">Submit My Entry</button>
+    </div>
+  </section>
+
+  <section id="contact">
+    <h2>Contact Us</h2>
+    <p>
+      Ready to elevate your content?<br><br>
+      📧 Email: <a href="mailto:info@SwipeClipsmedia.com" style="color:gold;">info@SwipeClipsmedia.com</a><br>
+      📱 Instagram: <a href="https://instagram.com/SwipeClipsmedia" style="color:gold;" target="_blank">@SwipeClipsmedia</a><br><br>
+      Please give us 72 hours to reply.
+      <br>
+      Let’s build success—together.
+    </p>
+  </section>
+
+<script>
+  const priceToggle = document.getElementById("priceToggle");
+
+  priceToggle.addEventListener("change", function () {
+    const starter = document.getElementById("starter-price");
+    const pro = document.getElementById("pro-price");
+    const elite = document.getElementById("elite-price");
+
+    if (this.checked) {
+      starter.innerHTML = "$10 / yearly";
+      pro.innerHTML = "$15 / yearly";
+      elite.innerHTML = "$20/ yearly";
+    } else {
+      starter.innerHTML = "$35 / month";
+      pro.innerHTML = `
+        <span style="font-size: 1.2rem;">$45 / month</span><br>
+        <span style="text-decoration: line-through; color: red;">$60</span> – 
+        <span style="color: #00ffcc;">25% OFF</span>`;
+      elite.innerHTML = "$85 / month";
+    }
+  });
+</script>
+</body>
+</html>
